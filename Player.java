@@ -2,6 +2,8 @@ import java.util.Scanner; //if needed here
 import java.util.ArrayList;
 import java.util.Stack;
 
+
+//Will Modified this badboy.
 public abstract class Player{
     protected ArrayList<Card> hand;
 

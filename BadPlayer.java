@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Stack;
 
+//something here.
+
 public class BadPlayer extends Player{
     public static int diamondCount;
     public static int clubCount;
@@ -140,6 +142,7 @@ public class BadPlayer extends Player{
             return false;*/
         }
     }
+  
 //commit change
-
+/* master*/
 }
