@@ -67,6 +67,7 @@ public class Crazy8Game{
             drawPile.push(deck[i]);
           }
 
+
           System.out.println("draw pile is : " + Arrays.toString( Arrays.copyOfRange(deck, 15, deck.length) ));
         }
         else {
@@ -91,6 +92,7 @@ public class Crazy8Game{
           
           System.out.println("draw pile is : " + Arrays.toString( Arrays.copyOfRange(deck, 20, deck.length) ));
         }
+
 
         
         deck = null;
