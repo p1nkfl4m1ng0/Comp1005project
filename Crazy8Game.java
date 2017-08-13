@@ -5,7 +5,9 @@ import java.util.Random;
 
 public class Crazy8Game{
     public static boolean reverseOrder = false;
-
+    public static boolean fourPlayer = false;
+    public static boolean twoPlayer = true;
+    public static boolean threePlayer = false;
     public static void main(String[] args){
 
   /* create the deck */
@@ -27,29 +29,72 @@ public class Crazy8Game{
             deck[i] = swap;
         }
 
-  /* players in the game */
-        Player[] players = new Player[4];
-        players[0] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 0, 5) );
-        System.out.println("0 : " + Arrays.toString( Arrays.copyOfRange(deck, 0, 5)));
-        players[1] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 5, 10) );
-        System.out.println("1 : " + Arrays.toString( Arrays.copyOfRange(deck, 5, 10)));
-        players[2] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 10, 15) );
-        System.out.println("2 : " + Arrays.toString( Arrays.copyOfRange(deck, 10, 15)));
-        players[3] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 15, 20) );
-        System.out.println("3 : " + Arrays.toString( Arrays.copyOfRange(deck, 15, 20)));
-
-  /* discard and draw piles */
-        DiscardPile discardPile = new DiscardPile();
-        Stack<Card> drawPile = new Stack<Card>();
-        for(int i=20; i<deck.length; i++){
+        
+        
+        Player[] players;
+        DiscardPile discardPile;
+        Stack<Card> drawPile;
+        
+        if(twoPlayer){
+          //for 2 player game: finding range of cards. need 7 cards in first hand: range = (0,7) and (7,14)
+          players = new Player[2];
+          players[0] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 0, 7) );
+          System.out.println("0 : " + Arrays.toString( Arrays.copyOfRange(deck, 0, 7)));
+          players[1] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 7, 14) );
+          System.out.println("1 : " + Arrays.toString( Arrays.copyOfRange(deck, 7, 14)));  
+          
+          discardPile = new DiscardPile();
+          drawPile = new Stack<Card>();
+          for(int i=14; i<deck.length; i++){
             drawPile.push(deck[i]);
+          }
+
+          System.out.println("draw pile is : " + Arrays.toString( Arrays.copyOfRange(deck, 14, deck.length) ));
+          
+        }
+        else if(threePlayer){
+          players = new Player[3];
+          players[0] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 0, 5) );
+          System.out.println("0 : " + Arrays.toString( Arrays.copyOfRange(deck, 0, 5)));
+          players[1] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 5, 10) );
+          System.out.println("1 : " + Arrays.toString( Arrays.copyOfRange(deck, 5, 10)));
+          players[2] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 10, 15) );
+          System.out.println("2 : " + Arrays.toString( Arrays.copyOfRange(deck, 10, 15)));
+          
+          discardPile = new DiscardPile();
+          drawPile = new Stack<Card>();
+          for(int i=15; i<deck.length; i++){
+            drawPile.push(deck[i]);
+          }
+
+          System.out.println("draw pile is : " + Arrays.toString( Arrays.copyOfRange(deck, 15, deck.length) ));
+        }
+        else {
+        
+          /* players in the game */
+          players = new Player[4];
+          players[0] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 0, 5) );
+          System.out.println("0 : " + Arrays.toString( Arrays.copyOfRange(deck, 0, 5)));
+          players[1] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 5, 10) );
+          System.out.println("1 : " + Arrays.toString( Arrays.copyOfRange(deck, 5, 10)));
+          players[2] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 10, 15) );
+          System.out.println("2 : " + Arrays.toString( Arrays.copyOfRange(deck, 10, 15)));
+          players[3] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 15, 20) );
+          System.out.println("3 : " + Arrays.toString( Arrays.copyOfRange(deck, 15, 20)));
+          
+          /* discard and draw piles */
+          discardPile = new DiscardPile();
+          drawPile = new Stack<Card>();
+          for(int i=20; i<deck.length; i++){
+            drawPile.push(deck[i]);
+          }
+          
+          System.out.println("draw pile is : " + Arrays.toString( Arrays.copyOfRange(deck, 20, deck.length) ));
         }
 
-        System.out.println("draw pile is : " + Arrays.toString( Arrays.copyOfRange(deck, 15, deck.length) ));
-
+        
         deck = null;
-
-
+        
         boolean win = false;
 
         int skip = 1; //determines if should skip or not. 1 = normal passing, 2 = skip a turn.
