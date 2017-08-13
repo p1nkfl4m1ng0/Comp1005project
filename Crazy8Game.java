@@ -35,7 +35,7 @@ public class Crazy8Game{
         System.out.println("1 : " + Arrays.toString( Arrays.copyOfRange(deck, 5, 10)));
         players[2] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 10, 15) );
         System.out.println("2 : " + Arrays.toString( Arrays.copyOfRange(deck, 10, 15)));
-        players[3] = new MemoryPlayer( Arrays.copyOfRange(deck, 15, 20) );
+        players[3] = new DiscardHighPointsPlayer( Arrays.copyOfRange(deck, 15, 20) );
         System.out.println("3 : " + Arrays.toString( Arrays.copyOfRange(deck, 15, 20)));
 
   /* discard and draw piles */
