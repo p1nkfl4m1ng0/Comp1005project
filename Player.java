@@ -2,8 +2,6 @@ import java.util.Scanner; //if needed here
 import java.util.ArrayList;
 import java.util.Stack;
 
-
-//Will Modified this badboy.
 public abstract class Player{
     protected ArrayList<Card> hand;
 
@@ -40,20 +38,23 @@ public abstract class Player{
             }
         }
         
-        /* We decided not to ask for user input to change suits when an 8 is played.
-        //Check to see if an 8 was played and allows player to change suits:
-        Scanner keyboard = new Scanner(System.in);
-        if(discardPile.top().getRank() == 8){
-            System.out.println("Please enter the desired suit");
-            String input = keyboard.nextLine();
-            discardPile.add(new Card(input, "8"));
-        }
-        */
         
+     
         if( this.hand.size() == 0 ){return true;}
         return false;
     }
-
+    
+    //new method to for playing 8's: Essentially, me and Will had to figure out which suit we needed to play, using some code in your Player classes
+    //and used that suit for the parameter below. This method makes the new 8 placed in the discard pile of the suit parameter.
+    public Card eight(String suit, DiscardPile discardPile){
+      if(discardPile.top().getRank() == 8){
+           discardPile.add(new Card(suit, "8"));
+           return null;
+        }
+      return null;
+    }
+    
+    
 
     /* play a card  */
     public abstract boolean play(DiscardPile       discardPile,
