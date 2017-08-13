@@ -8,6 +8,45 @@ public class Crazy8Game{
     public static boolean fourPlayer = false;
     public static boolean twoPlayer = true;
     public static boolean threePlayer = false;
+    
+  //Method to calculate value of a hand - used for determining winner and keeping scores
+    public static int handValue(ArrayList<Card> hand) {
+      int value = 0; 
+      for (int i=0; i<hand.size(); i++) {
+        if (hand.get(i).getRankString().equals("Jack") || hand.get(i).getRankString().equals("Queen") || hand.get(i).getRankString().equals("King")){
+          value = value + 10;
+        }
+        else if (hand.get(i).getRankString().equals("Ace")){
+          value = value + 1;
+        } 
+        else if (hand.get(i).getRankString().equals("8")){
+          value = value + 50;
+        } 
+        else if (hand.get(i).getRankString().equals("2") || hand.get(i).getRankString().equals("4")){
+          value = value + 25;
+        } 
+        else if (hand.get(i).getRankString().equals("7")){
+          value = value + 20;
+        } 
+        else if (hand.get(i).getRankString().equals("3")){
+          value = value + 3;
+        } 
+        else if (hand.get(i).getRankString().equals("5")){
+          value = value + 5;
+        } 
+        else if (hand.get(i).getRankString().equals("6")){
+          value = value + 6;
+        } 
+        else if (hand.get(i).getRankString().equals("9")){
+          value = value + 9;
+        } 
+        else if (hand.get(i).getRankString().equals("10")){
+          value = value + 10;
+        } 
+      }
+      return value;
+    }
+    
     public static void main(String[] args){
 
   /* create the deck */
@@ -157,26 +196,29 @@ public class Crazy8Game{
 
         }
 
-        if (drawPile.empty()) { // if drawPile is empty, add up points and declare winner as topScorer
-            int topScorer = 0;
-            int topScore = 0;
-            int score;
+        // Calculate value of each hand. The player with the smaller value (including empty hand) wins. 
+        int smallestHandValue = handValue(people.get(0).getHand()); //initialize with value from first player;
+        int smallestHandPlayer = 0; //initialize with value from first player;
+        for (int i=0; i<people.size(); i++){
+          System.out.println("player " + i + "'s hand is: " + people.get(i).getHand() + " and it is worth " + handValue(people.get(i).getHand()));
 
-            for (int i=0; i<people.size(); i++){
-                System.out.println("player " + i + "'s hand is: " + people.get(i).getHand());
-                score = 0;
-                for (int j=0; j<people.get(i).getSizeOfHand(); j++) {
-                    score = score + people.get(i).getHand().get(j).getRank();
-                    if (score>=topScore) {
-                        topScore = score;
-                        topScorer = i;
-                    }
-                }
-            }
-            System.out.println("winner is player " + topScorer + " with this many points: " + topScore);
+          if (handValue(people.get(i).getHand())<smallestHandValue) {
+            smallestHandValue = handValue(people.get(i).getHand());
+            smallestHandPlayer = i;
+          }
         }
-        else {
-            System.out.println("winner is player " + player);
+        System.out.println("player " + smallestHandPlayer + " has the least points and is therefore the winner.");
+
+        // To keep track of total scores ******************* needs modifications in order to work for multiple games
+        int[] scores = new int[people.size()];
+        for (int i=0; i<people.size(); i++){
+          if (i!=smallestHandPlayer) { //if the winner of the game still has cards, don't add their value to their total score.
+            scores[smallestHandPlayer] = scores[smallestHandPlayer] + handValue(people.get(i).getHand()); 
+          }
         }
+        for (int i=0; i<people.size(); i++){
+          System.out.println("player " + i + "'s total score thusfar is: " + scores[i]);
+        }
+         
     }
 }
