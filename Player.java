@@ -39,6 +39,8 @@ public abstract class Player{
                 else{return true;}
             }
         }
+        
+        /* We decided not to ask for user input to change suits when an 8 is played.
         //Check to see if an 8 was played and allows player to change suits:
         Scanner keyboard = new Scanner(System.in);
         if(discardPile.top().getRank() == 8){
@@ -46,6 +48,8 @@ public abstract class Player{
             String input = keyboard.nextLine();
             discardPile.add(new Card(input, "8"));
         }
+        */
+        
         if( this.hand.size() == 0 ){return true;}
         return false;
     }
