@@ -17,4 +17,17 @@ public class DiscardPile{
         cards.push(card);
     }
 
+    /* Oana: remove a card from the discard pile */
+    public Card remove() {
+        return cards.pop();
+    }
+    
+    /* Oana: check is discard pile is empty */
+    public boolean empty() {
+        if (cards.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
 }
