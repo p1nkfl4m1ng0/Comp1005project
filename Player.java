@@ -27,7 +27,7 @@ public abstract class Player{
                     }
 
                     //Finds A Card In Your Hand And Plays It:
-                    if (hand.get(i).getSuit().equals(discardPile.top().getSuit()) || hand.get(i).getRank() ==(discardPile.top().getRank())) {
+                    if (  (hand.get(i).getSuit().equals(discardPile.top().getSuit())) || (hand.get(i).getRank() == discardPile.top().getRank()) || (hand.get(i).getRank() == 8)) {
                         System.out.println("This Player's play is: " + hand.get(i));
                         discardPile.add(this.hand.remove(i));
                         playMade = true;
@@ -37,8 +37,6 @@ public abstract class Player{
                 else{return true;}
             }
         }
-        
-        
      
         if( this.hand.size() == 0 ){return true;}
         return false;
