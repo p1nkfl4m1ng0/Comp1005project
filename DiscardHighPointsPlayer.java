@@ -103,15 +103,16 @@ public class DiscardHighPointsPlayer extends Player{
             }
 
             hand.sort(Card::compareTo);
+            
+            
 
             if (eightIsPlayed(discardPile, this)){
+                
+                String suitToPlay = hand.get(0).getSuit(); //Chooses the suit with the highest points: It is at the begginning of the array
                 //Check to see if an 8 was played and allows player to change suits:
-                Scanner keyboard = new Scanner(System.in);
-                if(discardPile.top().getRank() == 8){
-                    System.out.println("Please enter the desired suit");
-                    String input = keyboard.nextLine();
-                    discardPile.add(new Card(input, "8"));
-                }
+                eight(suitToPlay,discardPile);
+                
+              
                 if( this.hand.size() == 0 ){return true;}
                 return false;
             }
