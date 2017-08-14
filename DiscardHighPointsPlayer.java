@@ -15,7 +15,7 @@ public class DiscardHighPointsPlayer extends Player{
         for (int i = 0; i < player.hand.size(); i++) {
             if (player.hand.get(i).getRank() == 8) {
                 System.out.println(player.hand);
-                System.out.println("Steve's Play is: " + player.hand.get(i));
+                System.out.println("This Players Play is: " + player.hand.get(i) + "\n");
                 discardPile.add(player.hand.remove(i));
                 return true;
             }
