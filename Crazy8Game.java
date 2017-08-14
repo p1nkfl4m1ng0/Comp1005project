@@ -76,7 +76,7 @@ public class Crazy8Game {
                 players = new Player[2];
                 players[0] = new DiscardHighPointsPlayer(Arrays.copyOfRange(deck, 0, 7));
                 System.out.println("Player 0's Hand ---> : " + Arrays.toString(Arrays.copyOfRange(deck, 0, 7)));
-                players[1] = new HamperLeader(Arrays.copyOfRange(deck, 7, 14));
+                players[1] = new RandomPlayer(Arrays.copyOfRange(deck, 7, 14));
                 System.out.println("Player 1's Hand ---> : " + Arrays.toString(Arrays.copyOfRange(deck, 7, 14)));
 
                 discardPile = new DiscardPile();
@@ -214,7 +214,7 @@ public class Crazy8Game {
             int smallestHandPlayer = 0; //initialize with value from first player;
 
             System.out.println();
-            System.out.println("RESULTS:");
+            System.out.println("*******RESULTS*******:");
             System.out.println();
 
             for (int i = 0; i < people.size(); i++) {
