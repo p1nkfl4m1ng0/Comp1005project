@@ -11,9 +11,8 @@ public abstract class Player{
     public ArrayList<Card> getHand(){return this.hand;}
 
     public boolean playValid(DiscardPile discardPile, Stack<Card> drawPile, ArrayList<Player> players){
-
         boolean playMade = false;
-        System.out.println(hand);
+        System.out.println("Hand: " + hand);
 
         while (!playMade) {
             for (int i = 0; i <= hand.size(); i++) {
@@ -28,7 +27,7 @@ public abstract class Player{
 
                     //Finds A Card In Your Hand And Plays It:
                     if (  (hand.get(i).getSuit().equals(discardPile.top().getSuit())) || (hand.get(i).getRank() == discardPile.top().getRank()) || (hand.get(i).getRank() == 8)) {
-                        System.out.println("This Player's play is: " + hand.get(i));
+                        System.out.println("This Player's play is: " + hand.get(i) + "\n");
                         discardPile.add(this.hand.remove(i));
                         playMade = true;
                         break;
@@ -37,31 +36,20 @@ public abstract class Player{
                 else{return true;}
             }
         }
-     
+
         if( this.hand.size() == 0 ){return true;}
         return false;
     }
-    
+
     //new method to for playing 8's: Essentially, me and Will had to figure out which suit we needed to play, using some code in your Player classes
     //and used that suit for the parameter below. This method makes the new 8 placed in the discard pile of the suit parameter.
     public Card eight(String suit, DiscardPile discardPile){
-      if(discardPile.top().getRank() == 8){
-           discardPile.add(new Card(suit, "8"));
-           return null;
+        if(discardPile.top().getRank() == 8){
+            discardPile.add(new Card(suit, "8"));
+            return null;
         }
-      return null;
+        return null;
     }
     
-    
-
-    /* play a card  */
-    public abstract boolean play(DiscardPile       discardPile,
-                                 Stack<Card>       drawPile,
-                                 ArrayList<Player> players);
-    // return true if player wins game by playing last card
-    // returns false otherwise
-    // side effects: plays a card to top of discard Pile, possibly taking zero
-    //               or more cards from the top of the drawPile
-    //               card played must be valid card
-
+    public abstract boolean play(DiscardPile  discardPile, Stack<Card>  drawPile, ArrayList<Player> players);
 }
