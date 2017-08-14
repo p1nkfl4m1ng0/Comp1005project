@@ -103,21 +103,24 @@ public class DiscardHighPointsPlayer extends Player{
             }
 
             hand.sort(Card::compareTo);
-            
-            
 
+
+            boolean retrn = false;
             if (eightIsPlayed(discardPile, this)){
-                
+
                 String suitToPlay = hand.get(0).getSuit(); //Chooses the suit with the highest points: It is at the begginning of the array
                 //Check to see if an 8 was played and allows player to change suits:
                 eight(suitToPlay,discardPile);
-                
-              
+
+
                 if( this.hand.size() == 0 ){return true;}
                 return false;
             }
             else {
-                return playValid(discardPile,drawPile,players);
+                String suitToPlay = hand.get(0).getSuit();
+                retrn = playValid(discardPile,drawPile,players);
+                eight(suitToPlay,discardPile);
+                return retrn;
             }
         }
     }
