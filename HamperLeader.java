@@ -22,10 +22,10 @@ public class HamperLeader extends Player {
 		}
 		
 		//where's the leader?
-		boolean leaderInFront = (((players.indexOf(leader)-1 + players.length)%players.length == players.indexOf(this)) && !Crazy8Game.reverseOrder) 
+		boolean leaderInFront = (((players.indexOf(leader)-1 + players.size())%players.size() == players.indexOf(this)) && !Crazy8Game.reverseOrder) 
 								|| ((players.indexOf(leader)+1 == players.indexOf(this)) && Crazy8Game.reverseOrder);
 		
-		boolean leaderBehind = (((players.indexOf(leader)+ 1)%players.length == players.indexOf(this)) && !Crazy8Game.reverseOrder) 
+		boolean leaderBehind = (((players.indexOf(leader)+ 1)%players.size() == players.indexOf(this)) && !Crazy8Game.reverseOrder) 
 								|| ((players.indexOf(leader)-1 == players.indexOf(this)) && Crazy8Game.reverseOrder);
 		
 		
