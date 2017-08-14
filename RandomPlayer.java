@@ -10,7 +10,9 @@ public class RandomPlayer extends Player {
                         Stack<Card>       drawPile,
                         ArrayList<Player> players)
     {
-
-        return playValid(discardPile,drawPile,players);
+        boolean retrn;
+        retrn = playValid(discardPile,drawPile,players);
+        eight(Card.SUITS[(int)(Math.random()*5)],discardPile);
+        return retrn;
     }
 }
