@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -107,10 +108,11 @@ public class DiscardHighPointsPlayer extends Player{
 
             boolean retrn = false;
             if (eightIsPlayed(discardPile, this)){
-
-                String suitToPlay = this.hand.get(0).getSuit(); //Chooses the suit with the highest points: It is at the begginning of the array
-                //Check to see if an 8 was played and allows player to change suits:
-                eight(suitToPlay,discardPile);
+                if(this.hand.size() !=0) {
+                    String suitToPlay = this.hand.get(0).getSuit(); //Chooses the suit with the highest points: It is at the begginning of the array
+                    //Check to see if an 8 was played and allows player to change suits:
+                    eight(suitToPlay, discardPile);
+                }
 
 
                 if( this.hand.size() == 0 ){return true;}
@@ -122,7 +124,7 @@ public class DiscardHighPointsPlayer extends Player{
                     String suitToPlay = hand.get(0).getSuit();
                     eight(suitToPlay,discardPile);
                 }
-                
+
                 return retrn;
             }
         }
