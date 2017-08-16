@@ -1,0 +1,105 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Stack;
+
+/**
+ * Created by Meet Sejpal on 13-08-2017.
+ */
+public class MindTheEights extends Player {
+    public MindTheEights(Card[] cards){this.hand = new ArrayList<Card>(Arrays.asList(cards));}
+    public int checkeights(Player player) {
+        int count = 0;
+            for (int i = 0; i < player.hand.size(); i++) {
+                if (player.hand.get(i).getRank() == 8) {
+                    count++;
+                }
+            }
+
+        return count;
+    }
+    public void playeight(DiscardPile discardPile){
+        int[] count = {0,0,0,0};
+        int index = 0;
+        String[] suit = { "Diamonds", "Clubs", "Hearts", "Spades"};
+        for(int i=0;i<this.hand.size();i++){
+            if(this.hand.get(i).rank == "8"){
+                index = i;
+            }
+            if(this.hand.get(i).getSuit()== "Diamonds"){
+                count[0]++;
+            }
+            if(this.hand.get(i).getSuit()== "Clubs"){
+                count[1]++;
+            }
+            if(this.hand.get(i).getSuit()== "Spades"){
+                count[3]++;
+            }
+            if(this.hand.get(i).getSuit()== "Hearts"){
+                count[2]++;
+            }
+        }
+        int highestcount=0;
+        String highsuit = "None";
+        for(int l=0;l<count.length;l++){
+            if(count[l]>highestcount){
+                highestcount = count[l];
+                highsuit = suit[l];
+            }
+        }
+        this.hand.remove(index);
+        discardPile.add(new Card(highsuit,"8"));
+    }
+    public boolean playValid(DiscardPile discardPile, Stack<Card> drawPile, ArrayList<Player> players){
+        boolean playMade = false;
+        System.out.println("Hand: " + hand);
+
+        while (!playMade) {
+            for (int i = 0; i <= hand.size(); i++) {
+                if(!drawPile.empty()){
+
+                    //If there is not a valid card to play, this picks up another card:
+                    if (i == hand.size()) {
+                        hand.add(drawPile.pop());
+                        System.out.println("This Player Draws: " + hand.get(hand.size()-1));
+                        break;
+                    }
+                    if (checkeights(this)>0){
+                        int lowestcard = 7;
+                        for(int j = 0;j<players.size();j++){
+                            if(players.get(j).hand.size()<lowestcard) {
+                                lowestcard = players.get(j).hand.size();
+                            }
+                            if(((checkeights(this)==4)&&(lowestcard <= 4)) ||
+                                    ((checkeights(this)==3)&&(lowestcard <= 3))||
+                                    ((checkeights(this)==2)&&(lowestcard <= 2))||
+                                    ((checkeights(this)==1)&&(lowestcard <= 1)) ||
+                                    ((checkeights(this)> 4)&&(lowestcard > 4))||
+                                    (this.hand.size()<=2)){
+                                playeight(discardPile);
+                                playMade = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    //Finds A Card In Your Hand And Plays It:
+                    else if (  (hand.get(i).getSuit().equals(discardPile.top().getSuit())) || (hand.get(i).getRank() == discardPile.top().getRank())){
+                        System.out.println("This Player's play is: " + hand.get(i) + "\n");
+                        discardPile.add(this.hand.remove(i));
+                        playMade = true;
+                        break;
+                    }
+                }
+                else{return true;}
+            }
+        }
+
+        if( this.hand.size() == 0 ){return true;}
+        return false;
+    }
+
+    public boolean play(DiscardPile discardPile, Stack<Card> drawpile, ArrayList<Player> players){
+    return playValid(discardPile,drawpile,players);
+        }
+
+}
