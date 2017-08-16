@@ -54,8 +54,8 @@ public class ExtraCards extends Player{
     //if the next player only has one 1 card left, keep picking a card until a power card, if they do not have one
     //already
     //
-    //no more than one extra card in the early rounds of the game
-    //will not take extra cards if power cards are in hand
+    //
+    //will not take extra cards if playable power cards are in hand
 
 
     Card discard(int inputRank, DiscardPile discardPile, Stack<Card> drawPile) {
