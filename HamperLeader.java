@@ -162,7 +162,7 @@ public class HamperLeader extends Player {
 				}
 			}
 		} 
-		if ((!leaderInFront && !LeaderBehind) || suitsPowers[powerSuit] == 0) {
+		if ((!leaderInFront && !leaderBehind) || suitsPowers[powerSuit] == 0) {
 			for (int i = 0; i < hand.size(); i++) {
 				switch (hand.get(i).getSuit()) {
 				case "Diamonds" :
