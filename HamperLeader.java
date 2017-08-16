@@ -186,10 +186,8 @@ public class HamperLeader extends Player {
 			}
 		}
 		
-		System.out.println();
-		if (playMade && discardPile.top().getRank() == 8) {
-			discardPile.add(new Card(Card.SUITS[powerSuit], "8"));		
-		}
+		
+		this.eight(Card.SUITS[powerSuit], discardPile);
 		
 		if( this.hand.size() == 0 ){return true;}
 		return false;
