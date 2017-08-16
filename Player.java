@@ -22,7 +22,7 @@ public abstract class Player{
                     if (i == hand.size()) {
                         hand.add(drawPile.pop());
                         System.out.println("This Player Draws: " + hand.get(hand.size()-1));
-                        break;
+                        //break; - Commented this out because it wasn't allowing my player to play their card after they drew.
                     }
 
                     //Finds A Card In Your Hand And Plays It:
