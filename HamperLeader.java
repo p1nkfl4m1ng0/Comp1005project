@@ -100,6 +100,8 @@ public class HamperLeader extends Player {
 				if (suitsPowers[powerSuit] > 0) {
 					discard(8, discardPile, drawPile);
 				}
+			} else if (players.indexOf(leader) == players.indexOf(this)) {
+				System.out.println("This player has the least cards - will play normally.");
 			} else {
 				System.out.println("Leader's out of reach: It is Player " + players.indexOf(leader));
 
@@ -159,7 +161,8 @@ public class HamperLeader extends Player {
 					}
 				}
 			}
-		} else {
+		} 
+		if ((!leaderInFront && !LeaderBehind) || suitsPowers[powerSuit] == 0) {
 			for (int i = 0; i < hand.size(); i++) {
 				switch (hand.get(i).getSuit()) {
 				case "Diamonds" :
