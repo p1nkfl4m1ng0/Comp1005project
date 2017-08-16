@@ -95,7 +95,9 @@ public class MemoryPlayer extends Player {
     // If at most one card is playable, do what the RandomPlayer would do (ie. play that card or keep drawing until you have something to play)
     if (playable.size()<2) {
       retrn = playValid(discardPile,drawPile,players);
-      eight(bestSuit(discardPile),discardPile);
+      if(discardPile.top().getRank() == 8){
+           eight(bestSuit(discardPile),discardPile);
+      }
       return retrn;
     }
     
@@ -117,7 +119,9 @@ public class MemoryPlayer extends Player {
         hand.remove(cardToPlayByRank);
         hand.add(0, cardToPlayByRank);
         retrn = playValid(discardPile,drawPile,players);
-        eight(bestSuit(discardPile),discardPile);
+        if(discardPile.top().getRank() == 8){
+           eight(bestSuit(discardPile),discardPile);
+        }
         return retrn;        
       }
       // If there are multiple cards of the same rank, play the one whose suit has been seen the most
@@ -146,7 +150,9 @@ public class MemoryPlayer extends Player {
         hand.add(0, cardToPlayByRank);
 
         retrn = playValid(discardPile,drawPile,players);
-        eight(bestSuit(discardPile),discardPile);
+        if(discardPile.top().getRank() == 8){
+           eight(bestSuit(discardPile),discardPile);
+        }
         return retrn;     
       }
       
@@ -185,7 +191,9 @@ public class MemoryPlayer extends Player {
         hand.add(0, cardToPlayBySuit);
 
         retrn = playValid(discardPile,drawPile,players);
-        eight(bestSuit(discardPile),discardPile);
+        if(discardPile.top().getRank() == 8){
+           eight(bestSuit(discardPile),discardPile);
+        }
         return retrn;     
         
       }
